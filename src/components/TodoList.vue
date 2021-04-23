@@ -28,10 +28,15 @@ export default {
   &-list {
     display: inline-block;
     list-style: none;
+    margin-top: 0;
 
     &,
     &-header {
       color: hsl(106, 63%, 60%);
+    }
+
+    &__item {
+      cursor: pointer;
     }
   }
 }
