@@ -62,5 +62,8 @@ body {
   font-family: Arial, Helvetica, sans-serif;
   font-size: 16px;
   background-color: hsl(65, 100%, 93%);
+
+  display: flex;
+  justify-content: center;
 }
 </style>
