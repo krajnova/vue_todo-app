@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <TodoList :todos="todos" @delete-todo="deleteTodo" />
+    <TodoList :todos="sortedTodos" @delete-todo="deleteTodo" />
     <AddTodo @add-todo="addTodo" />
   </div>
 </template>
@@ -40,6 +40,11 @@ export default {
         },
       ],
     }
+  },
+  computed: {
+    sortedTodos() {
+      return [...this.todos].sort(({ completed }) => (completed ? 1 : -1))
+    },
   },
   methods: {
     addTodo(newTodo) {
