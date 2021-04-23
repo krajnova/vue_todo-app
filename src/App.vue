@@ -6,8 +6,8 @@
 </template>
 
 <script>
-import TodoList from './components/TodoList';
-import AddTodo from './components/AddTodo';
+import TodoList from './components/TodoList'
+import AddTodo from './components/AddTodo'
 
 export default {
   name: 'App',
@@ -19,41 +19,36 @@ export default {
     return {
       todos: [
         {
-          id: 1,
           title: 'Go workout',
-          completed: false
+          completed: false,
         },
         {
-          id: 2,
           title: 'Do laundry',
-          completed: false
+          completed: false,
         },
         {
-          id: 3,
           title: 'Cook food',
-          completed: false
+          completed: false,
         },
         {
-          id: 4,
           title: 'Clean up room',
-          completed: false
+          completed: false,
         },
         {
-          i: 5,
           title: 'Finish work',
-          completed: false
+          completed: false,
         },
-      ]
+      ],
     }
   },
   methods: {
     addTodo(newTodo) {
-      this.todos = [...this.todos, newTodo];
+      this.todos.push(newTodo)
     },
-    deleteTodo(todoId) {
-      this.todos = this.todos.filter(todo => todo.id !== todoId);
-    }
-  }
+    deleteTodo(id) {
+      this.todos.splice(id, 1)
+    },
+  },
 }
 </script>
 

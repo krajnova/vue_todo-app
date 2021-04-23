@@ -1,15 +1,11 @@
 <template>
   <div>
-    <form @submit="addTodo">
-      <input class="add-todo-input" type="text" v-model="title" name="title">
-      <button class="add-todo-btn" type=submit>Add</button>
-    </form>
+    <input class="add-todo-input" type="text" v-model="title" name="title" />
+    <button @click="addTodo()" class="add-todo-btn">Add</button>
   </div>
 </template>
 
 <script>
-import { v4 as uuid } from 'uuid';
-
 export default {
   name: 'AddTodo',
   data() {
@@ -19,25 +15,22 @@ export default {
   },
 
   methods: {
-    addTodo(e) {
-      e.preventDefault();
+    addTodo() {
       if (this.title === '') {
-        return;
+        return
       }
 
       const newTodo = {
-        id: uuid(),
         title: this.title,
         completed: false,
       }
 
-      this.$emit('add-todo', newTodo);
-      this.title = '';
-    }
-  }
+      this.$emit('add-todo', newTodo)
+      this.title = ''
+    },
+  },
 }
 </script>
-
 
 <style scoped>
 .add-todo-btn {
@@ -68,5 +61,4 @@ export default {
 .add-todo-btn:focus {
   outline: none;
 }
-
 </style>
