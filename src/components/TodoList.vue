@@ -23,9 +23,16 @@ export default {
 }
 </script>
 
-<style scoped>
-.todo-list-header,
-.todo-list {
-  color: hsl(106, 63%, 60%);
+<style lang="scss" scoped>
+.todo {
+  &-list {
+    display: inline-block;
+    list-style: none;
+
+    &,
+    &-header {
+      color: hsl(106, 63%, 60%);
+    }
+  }
 }
 </style>
