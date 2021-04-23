@@ -21,7 +21,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-$font-size: 1.3rem;
+$font-size: 1.4rem;
 
 .todo-container {
   display: flex;
