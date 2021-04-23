@@ -36,6 +36,7 @@ $font-size: 1.4rem;
     font-weight: bold;
     cursor: pointer;
     font-size: $font-size;
+    margin-left: 0.7rem;
   }
 }
 
