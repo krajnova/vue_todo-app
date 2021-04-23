@@ -32,33 +32,37 @@ export default {
 }
 </script>
 
-<style scoped>
-.add-todo-btn {
-  background-color: hsl(106, 63%, 81%);
-  color: #fff;
-  border: 1px solid hsl(106, 63%, 81%);
-  padding: 7px;
-  border-radius: 0 10px 10px 0;
-  cursor: pointer;
-}
+<style lang="scss" scoped>
+$btn-background: hsl(106, 63%, 81%);
+$transition: all 0.2s ease-in-out;
 
-.add-todo-btn:hover,
-.add-todo-btn:focus {
-  background-color: hsl(106, 63%, 50%);
-}
+.add-todo {
+  &-btn {
+    background-color: $btn-background;
+    color: #fff;
+    border: 1px solid hsl(106, 63%, 81%);
+    padding: 7px;
+    border-radius: 0 10px 10px 0;
+    cursor: pointer;
+    transition: $transition;
+    outline: 0;
 
-.add-todo-input {
-  border: 1px solid hsl(106, 63%, 81%);
-  padding: 7px;
-  border-radius: 10px 0 0 10px;
-}
+    &:hover,
+    &:focus {
+      background-color: darken($btn-background, 20%);
+    }
+  }
 
-.add-todo-input:focus {
-  border-color: hsl(106, 63%, 50%);
-}
+  &-input {
+    border: 1px solid hsl(106, 63%, 81%);
+    padding: 7px;
+    border-radius: 10px 0 0 10px;
+    outline: 0;
+    transition: $transition;
 
-.add-todo-input:focus,
-.add-todo-btn:focus {
-  outline: none;
+    &:focus {
+      border-color: hsl(106, 63%, 50%);
+    }
+  }
 }
 </style>
