@@ -41,6 +41,20 @@ export default {
       ],
     }
   },
+  created() {
+    let todos = window.localStorage.getItem('todos')
+    if (todos) {
+      this.todos = JSON.parse(todos)
+    }
+  },
+  watch: {
+    todos: {
+      immediate: false,
+      handler(newVal) {
+        window.localStorage.setItem('todos', JSON.stringify(newVal))
+      },
+    },
+  },
   computed: {
     sortedTodos() {
       return [...this.todos].sort(({ completed }) => (completed ? 1 : -1))
