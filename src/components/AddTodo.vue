@@ -1,15 +1,11 @@
 <template>
   <div>
-    <form @submit="addTodo">
-      <input class="add-todo-input" type="text" v-model="title" name="title">
-      <button class="add-todo-btn" type=submit>Add</button>
-    </form>
+    <input class="add-todo-input" type="text" v-model="title" name="title" />
+    <button @click="addTodo()" class="add-todo-btn">Add</button>
   </div>
 </template>
 
 <script>
-import { v4 as uuid } from 'uuid';
-
 export default {
   name: 'AddTodo',
   data() {
@@ -19,54 +15,54 @@ export default {
   },
 
   methods: {
-    addTodo(e) {
-      e.preventDefault();
+    addTodo() {
       if (this.title === '') {
-        return;
+        return
       }
 
       const newTodo = {
-        id: uuid(),
         title: this.title,
         completed: false,
       }
 
-      this.$emit('add-todo', newTodo);
-      this.title = '';
-    }
-  }
+      this.$emit('add-todo', newTodo)
+      this.title = ''
+    },
+  },
 }
 </script>
 
+<style lang="scss" scoped>
+$btn-background: hsl(106, 63%, 81%);
+$transition: all 0.2s ease-in-out;
 
-<style scoped>
-.add-todo-btn {
-  background-color: hsl(106, 63%, 81%);
-  color: #fff;
-  border: 1px solid hsl(106, 63%, 81%);
-  padding: 7px;
-  border-radius: 0 10px 10px 0;
-  cursor: pointer;
+.add-todo {
+  &-btn {
+    background-color: $btn-background;
+    color: #fff;
+    border: 1px solid hsl(106, 63%, 81%);
+    padding: 7px;
+    border-radius: 0 10px 10px 0;
+    cursor: pointer;
+    transition: $transition;
+    outline: 0;
+
+    &:hover,
+    &:focus {
+      background-color: darken($btn-background, 20%);
+    }
+  }
+
+  &-input {
+    border: 1px solid hsl(106, 63%, 81%);
+    padding: 7px;
+    border-radius: 10px 0 0 10px;
+    outline: 0;
+    transition: $transition;
+
+    &:focus {
+      border-color: hsl(106, 63%, 50%);
+    }
+  }
 }
-
-.add-todo-btn:hover,
-.add-todo-btn:focus {
-  background-color: hsl(106, 63%, 50%);
-}
-
-.add-todo-input {
-  border: 1px solid hsl(106, 63%, 81%);
-  padding: 7px;
-  border-radius: 10px 0 0 10px;
-}
-
-.add-todo-input:focus {
-  border-color: hsl(106, 63%, 50%);
-}
-
-.add-todo-input:focus,
-.add-todo-btn:focus {
-  outline: none;
-}
-
 </style>

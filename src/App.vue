@@ -1,13 +1,13 @@
 <template>
   <div id="app">
-    <TodoList :todos="todos" @delete-todo="deleteTodo" />
+    <TodoList :todos="sortedTodos" @delete-todo="deleteTodo" />
     <AddTodo @add-todo="addTodo" />
   </div>
 </template>
 
 <script>
-import TodoList from './components/TodoList';
-import AddTodo from './components/AddTodo';
+import TodoList from './components/TodoList'
+import AddTodo from './components/AddTodo'
 
 export default {
   name: 'App',
@@ -19,41 +19,55 @@ export default {
     return {
       todos: [
         {
-          id: 1,
           title: 'Go workout',
-          completed: false
+          completed: false,
         },
         {
-          id: 2,
           title: 'Do laundry',
-          completed: false
+          completed: false,
         },
         {
-          id: 3,
           title: 'Cook food',
-          completed: false
+          completed: false,
         },
         {
-          id: 4,
           title: 'Clean up room',
-          completed: false
+          completed: false,
         },
         {
-          i: 5,
           title: 'Finish work',
-          completed: false
+          completed: false,
         },
-      ]
+      ],
     }
+  },
+  created() {
+    let todos = window.localStorage.getItem('todos')
+    if (todos) {
+      this.todos = JSON.parse(todos)
+    }
+  },
+  watch: {
+    todos: {
+      immediate: false,
+      handler(newVal) {
+        window.localStorage.setItem('todos', JSON.stringify(newVal))
+      },
+    },
+  },
+  computed: {
+    sortedTodos() {
+      return [...this.todos].sort(({ completed }) => (completed ? 1 : -1))
+    },
   },
   methods: {
     addTodo(newTodo) {
-      this.todos = [...this.todos, newTodo];
+      this.todos.push(newTodo)
     },
-    deleteTodo(todoId) {
-      this.todos = this.todos.filter(todo => todo.id !== todoId);
-    }
-  }
+    deleteTodo(id) {
+      this.todos.splice(id, 1)
+    },
+  },
 }
 </script>
 
@@ -62,5 +76,8 @@ body {
   font-family: Arial, Helvetica, sans-serif;
   font-size: 16px;
   background-color: hsl(65, 100%, 93%);
+
+  display: flex;
+  justify-content: center;
 }
 </style>
